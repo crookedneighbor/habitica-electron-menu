@@ -1,7 +1,5 @@
 'use strict'
 
-console.log('foo')
-
 module.exports = [
   {
     path: '/',

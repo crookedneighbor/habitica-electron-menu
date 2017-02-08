@@ -46,35 +46,7 @@ function reportError (err) {
 	console.error(err)
 }
 
-function valueToColor (value) {
-  if (value > 10) {
-    return 'best'
-  } else if (value >= 5) {
-    return 'better'
-  } else if (value >= 1) {
-    return 'good'
-  } else if (value >= -1) {
-    return 'neutral'
-  } else if (value >= -10) {
-    return 'bad'
-  } else if (value >= -20) {
-    return 'worse'
-  } else {
-    return 'worst'
-  }
-}
-
-function formatTask (task) {
-  return {
-    id: task.id,
-    completed: task.completed,
-    text: task.text,
-    notes: task.notes,
-    color: valueToColor(task.value),
-    processInProgress: false,
-    selected: false
-  }
-}
+const formatTask = require('./lib/format-task')
 
 api.get('/tasks/user', {type: 'todos'}).then((response) => {
 	let tasks = response.data

@@ -58,6 +58,7 @@ const markdown = require('habitica-markdown')
 const todos = require('../store/todos')
 const modalTask = require('../store/modal-task')
 const api = require('../lib/habitica').api
+const formatTask = require('../lib/format-task')
 
 const Todo = require('./Todo.vue')
 
@@ -86,9 +87,7 @@ module.exports = {
       modalTask.editFields[field] = false
     },
     metaEnterCloseField ($event, field) {
-      console.log($event)
       if ($event.metaKey || $event.ctrlKey) {
-        console.log('foo')
         modalTask.editFields[field] = false
       }
     },
