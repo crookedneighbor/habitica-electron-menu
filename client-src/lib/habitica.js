@@ -27,5 +27,10 @@ module.exports = {
         apiToken: res.data.apiToken
       }
     })
+  },
+  getTasks () {
+    return api.get('/tasks/user', {type: 'todos'}).then((response) => {
+      return response.data
+    })
   }
 }

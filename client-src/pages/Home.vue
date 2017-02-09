@@ -57,10 +57,14 @@ const markdown = require('habitica-markdown')
 
 const todos = require('../store/todos')
 const modalTask = require('../store/modal-task')
-const api = require('../lib/habitica').api
+const habitica = require('../lib/habitica')
 const formatTask = require('../lib/format-task')
 
 const Todo = require('../components/Todo.vue')
+
+function reportError (err) {
+  console.error(err)
+}
 
 module.exports = {
   data () {
@@ -72,6 +76,13 @@ module.exports = {
       },
       todos: todos
     }
+  },
+  beforeCreate () {
+    habitica.getTasks().then((tasks) => {
+      tasks.forEach((task) => {
+        todos.push(formatTask(task))
+      })
+    }).catch(reportError)
   },
   methods: {
     md (text) {
