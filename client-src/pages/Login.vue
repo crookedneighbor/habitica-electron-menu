@@ -26,10 +26,6 @@
 </template>
 
 <style>
-body {
-  margin-top: 50px;
-}
-
 .advanced-options-link {
   cursor: pointer;
   text-align: right;

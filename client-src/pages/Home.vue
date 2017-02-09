@@ -60,7 +60,7 @@ const modalTask = require('../store/modal-task')
 const api = require('../lib/habitica').api
 const formatTask = require('../lib/format-task')
 
-const Todo = require('./Todo.vue')
+const Todo = require('../components/Todo.vue')
 
 module.exports = {
   data () {
