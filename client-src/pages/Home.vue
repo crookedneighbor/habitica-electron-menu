@@ -60,7 +60,7 @@ const modalTask = require('../store/modal-task')
 const habitica = require('../lib/habitica')
 const formatTask = require('../lib/format-task')
 
-const Todo = require('../components/Todo.vue')
+const Todo = require('./components/Todo.vue')
 
 function reportError (err) {
   console.error(err)

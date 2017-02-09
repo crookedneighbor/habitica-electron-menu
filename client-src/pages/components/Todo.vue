@@ -53,7 +53,7 @@
 <script>
 'use strict'
 
-const modalTask = require('../store/modal-task')
+const modalTask = require('../../store/modal-task')
 
 module.exports = {
   props: ['task'],
