@@ -34,6 +34,7 @@
 
 <script>
 const habitica = require('../lib/habitica')
+const DEFAULT_ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://habitica.com' : 'http://localhost:3000'
 
 module.exports = {
   data () {
@@ -42,26 +43,24 @@ module.exports = {
       error: '',
       username: '',
       pass: '',
-      endpoint: 'https://habitica.com'
+      endpoint: DEFAULT_ENDPOINT
     }
   },
   methods: {
     login () {
       this.error = ''
 
-      if (this.showAdvancedOptions) {
-        habitica.setOptions({
-          endpoint: this.endpoint
-        })
-      }
+      habitica.setOptions({
+        endpoint: this.endpoint
+      })
       return habitica.login(this.username, this.pass)
         .then((res) => {
           localStorage.id = res.id
           localStorage.apiToken = res.apiToken
           localStorage.endpoint = this.endpoint
+
           this.$router.replace(this.$route.query.redirect || '/')
-        })
-        .catch((err) => {
+        }).catch((err) => {
           this.error = err.message
         })
     },

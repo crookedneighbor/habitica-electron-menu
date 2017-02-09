@@ -22,10 +22,13 @@ module.exports = {
       username,
       password
     }).then((res) => {
-      return {
+      let creds = {
         id: res.data.id,
         apiToken: res.data.apiToken
       }
+
+      api.setOptions(creds)
+      return creds
     })
   },
   getTasks () {
