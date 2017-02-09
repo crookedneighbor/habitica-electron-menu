@@ -22,6 +22,7 @@
     "build:client:watch": "watchify client-src/main.js -o client-assets/js/script.js",
     "build:electron": "electron-packager . Example --platform=darwin --arch=x64 --version=0.36.0 --icon=Icon.icns",
     "build": "NODE_ENV=production npm run build:client && npm run build:electron",
+    "dev": "npm run build:client:watch & electron .",
     "start": "npm run build:client && electron ."
   },
   "browserify": {
