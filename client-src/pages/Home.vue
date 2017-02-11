@@ -78,6 +78,8 @@ module.exports = {
     }
   },
   beforeCreate () {
+    todos.splice(0, todos.length) // clear out todos array
+
     habitica.getTasks().then((tasks) => {
       tasks.forEach((task) => {
         todos.push(formatTask(task))
