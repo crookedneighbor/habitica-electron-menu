@@ -14,7 +14,6 @@ if (auth.loggedIn()) {
 }
 
 module.exports = {
-  api,
   setOptions (options) {
     api.setOptions(options)
   },
@@ -39,5 +38,17 @@ module.exports = {
     return api.get('/tasks/user', {type: 'todos'}).then((response) => {
       return response.data
     })
+  },
+  makeTask (task) {
+    return api.post('/tasks/user', task)
+  },
+  scoreTask (id) {
+    return api.post(`/tasks/${id}/score/up`)
+  },
+  updateTask (id, task) {
+    return api.put(`/tasks/${id}`, task)
+  },
+  deleteTask (id) {
+    return api.del(`/tasks/${id}`)
   }
 }

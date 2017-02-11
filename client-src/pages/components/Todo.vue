@@ -75,7 +75,7 @@ module.exports = {
             modalTask.editFields.text = false
           },
           onApprove () {
-            api.put(`/tasks/${task.id}`, {
+            habitica.updateTask(task.id, {
               text: modalTask.text,
               notes: modalTask.notes
             }).then((res) => {
@@ -96,12 +96,10 @@ module.exports = {
     score (task) {
       task.processInProgress = true
       task.selected = true;
-    //
-    //   api.post(`/tasks/${todo.id}/score/up`)
-    //     .then(() => {
-    //       $(todoNode).slideUp()
-    //     })
-    //     .catch(reportError)
+
+      // habitica.scoreTask(task.id).then(() => {
+      //   $(todoNode).slideUp()
+      // }).catch(reportError)
     }
   },
 }

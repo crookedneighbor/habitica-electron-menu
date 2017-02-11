@@ -103,15 +103,14 @@ module.exports = {
       }
     },
     deleteTask (id) {
-      api.del(`/tasks/${id}`)
-        .then((res) => {
-          let taskIndex = todos.findIndex(task => task.id === id)
-  
-          if (taskIndex > -1) {
-            todos.splice(taskIndex, 1)
-          }
-          $('#modal').modal('hide')
-        })
+      habitica.deleteTask(id).then((res) => {
+        let taskIndex = todos.findIndex(task => task.id === id)
+
+        if (taskIndex > -1) {
+          todos.splice(taskIndex, 1)
+        }
+        $('#modal').modal('hide')
+      })
     },
     makeNewTask (newTask) {
       if (!newTask.text) {
@@ -121,7 +120,7 @@ module.exports = {
   
       newTask.invalid = false
       newTask.sending = true
-      api.post('/tasks/user', {
+      habitica.makeTask({
         text: newTask.text,
         type: 'todo'
       }).then((response) => {
