@@ -4,20 +4,20 @@
     <div class="ui message red" v-if="error">
       {{error}}
     </div>
-    <div class="field">
+    <div class="field" v-bind:class="{error: !username && error}">
       <label>Username or Email</label>
-      <input v-model="username" />
+      <input v-model="username" @keyup.enter="login" />
     </div>
-    <div class="field">
+    <div class="field" v-bind:class="{error: !pass && error}">
       <label>Password</label>
-      <input v-model="pass" />
+      <input v-model="pass" @keyup.enter="login" />
     </div>
     <p class="advanced-options-link">
       <a v-if="!showAdvancedOptions" @click="displayAdvancedOptions()">Show Advanced Options</a>
     </p>
-    <div class="field" v-if="showAdvancedOptions">
+    <div class="field" v-if="showAdvancedOptions" v-bind:class="{error: !endpoint && error}">
       <label>Endpoint</label>
-      <input v-model="endpoint" />
+      <input v-model="endpoint" @keyup.enter="login" />
     </div>
 
     <div class="ui button" @click="login">Login</div>
@@ -48,6 +48,19 @@ module.exports = {
   },
   methods: {
     login () {
+      if (!this.username) {
+        this.error = 'Username cannot be empty'
+        return
+      }
+      if (!this.pass) {
+        this.error = 'Password cannot be empty'
+        return
+      }
+      if (!this.endpoint) {
+        this.error = 'Endpoint cannot be empty'
+        return
+      }
+
       this.error = ''
 
       habitica.setOptions({
