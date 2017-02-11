@@ -1,6 +1,7 @@
 'use strict'
 
 const Habitica = require('habitica')
+const markdown = require('habitica-markdown')
 const auth = require('./auth')
 const api = new Habitica()
 
@@ -16,6 +17,9 @@ module.exports = {
   api,
   setOptions (options) {
     api.setOptions(options)
+  },
+  md (text) {
+    return markdown.render(text)
   },
   login (username, password) {
     return api.post('/user/auth/local/login', {

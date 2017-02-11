@@ -53,8 +53,6 @@
 <script>
 'use strict'
 
-const markdown = require('habitica-markdown')
-
 const todos = require('../store/todos')
 const modalTask = require('../store/modal-task')
 const habitica = require('../lib/habitica')
@@ -88,7 +86,7 @@ module.exports = {
   },
   methods: {
     md (text) {
-      return markdown.render(text)
+      return habitica.md(text)
     },
     editField (field) {
       modalTask.editFields[field] = true

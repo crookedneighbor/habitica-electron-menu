@@ -5,9 +5,7 @@
   </div>
 
   <div class="content" v-on:dblclick="openMenu(task)">
-    <div class="summary">
-      {{task.text}}
-    </div>
+    <div class="summary" v-html="md(task.text)"></div>
   </div>
 </div>
 </template>
@@ -53,11 +51,15 @@
 <script>
 'use strict'
 
+const habitica = require('../../lib/habitica')
 const modalTask = require('../../store/modal-task')
 
 module.exports = {
   props: ['task'],
   methods: {
+    md (text) {
+      return habitica.md(text)
+    },
     openMenu () {
       let task = this.task
       modalTask.id = task.id
