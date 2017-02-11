@@ -6,7 +6,7 @@
   </div>
   <div class="ui divider"></div>
   <div class="ui feed">
-    <todo v-for="task in todos" v-bind:task="task" :key="task.id">
+    <task v-for="task in todos" v-bind:task="task" :key="task.id">
   </div>
   <div id="modal" class="ui modal">
     <div class="header">
@@ -58,7 +58,7 @@ const modalTask = require('../store/modal-task')
 const habitica = require('../lib/habitica')
 const formatTask = require('../lib/format-task')
 
-const Todo = require('./components/Todo.vue')
+const Task = require('./components/Task.vue')
 
 function reportError (err) {
   console.error(err)
@@ -132,7 +132,7 @@ module.exports = {
     }
   },
   components: {
-    Todo: Todo
+    Task: Task
   }
 }
 </script>
